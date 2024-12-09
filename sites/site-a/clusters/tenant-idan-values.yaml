@@ -1,0 +1,30 @@
+namespace: clusters
+pullSecret:
+  name: tenant-idan-pull-secret
+  data: "eyJhdXRocyI6IHsiY2xvdWQub3BlbnNoaWZ0LmNvbSI6IHsiYXV0aCI6ICJiM0JsYm5Ob2FXWj..."
+
+etcdEncryptionKey:
+  name: tenant-idan-etcd-encryption-key
+  data: "TMHG6olDllzLQHWnNHByrxJ9Yg1rCAcHpgzRd4GK0cs="
+
+hostedControlPlane:
+  name: tenant-idan
+  infraID: tenant-idan-gr5wv
+  releaseImage: quay.io/openshift-release-dev/ocp-release:4.16.15-x86_64
+  baseDomain: ""
+  platformType: KubeVirt
+  etcd:
+    managementType: Managed
+    managed:
+      storage:
+        type: PersistentVolume
+        persistentVolume:
+          size: 8Gi
+nodePool:
+  name: tenant-idan
+  releaseImage: quay.io/openshift-release-dev/ocp-release:4.16.15-x86_64
+  platformType: KubeVirt
+  replicas: 2
+  cores: 2
+  memory: 6Gi
+  rootVolumeSize: 10Gi
